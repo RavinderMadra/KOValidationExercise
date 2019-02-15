@@ -1,0 +1,103 @@
+﻿@*@model KnockoutValidationExmp.Models.tblCustomerRec*@
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style type="text/css">
+    .errorStyle {
+        background-color: #ffd800;
+        color: #808080;
+        font-size: 13px;
+        padding: 5px 5px;
+        border-radius: 5px;
+        margin-top: 7px;
+    }
+</style>
+
+<div class="container">
+    <h2>Customer Record</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Customer</button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Address
+                </th>
+
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        <tbody data-bind="foreach: Customerrec">
+            <tr>
+                <td><span data-bind="text: Id" /></td>
+                <td><span data-bind="text: Name" /></td>
+                <td><span data-bind="text: Address" /></td>
+                <td>
+
+                    <a href="#" data-bind="click: function() { createmodel.Edit(Id); }">Edit</a>
+
+                    &nbsp;|
+                    <a href="#" data-bind="click: function() { createmodel.Delete(Id); }">Delete</a>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group" style="display: none;">
+                        <label for="Id">Id</label>
+                        <input class="form-control" id="ID" name="ID" type="text" placeholder="CustomerId " disabled="disabled" value="" data-bind="value:Id " />
+                    </div><!-- END ID Div -->
+
+                    <div class="form-group">
+                        <label for="FirstName">Name</label>
+                        <input class="form-control text-box single-line" id="Name" name="Name" type="text" placeholder="Name" value="" data-bind="value: Name" />
+                    </div><!-- END  NAME -->
+
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input class="form-control" id="Add" name="Add" type="text" placeholder="Address" value="" data-bind="value: Address" />
+                    </div><!-- END Address Div -->
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnAdd" data-bind="click: submit"> Save </button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/knockout.validation.min.js"></script>
+
+<script src="~/Scripts/KoValidationFile.js"></script>
+
